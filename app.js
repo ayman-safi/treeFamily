@@ -4,7 +4,7 @@ var savedData;
 var searchData;
 var color = ['#3090C7', '#566D7E', '#C38EC7', '#46C7C7', '#8467D7', '#4AA02C', '#E56717', '#ECD872'];
 var chart;
-const dataUrl = 'https://localhost:7006/family';
+const dataUrl = 'https://familytreeapi.azurewebsites.net/';
 
 function openNav() {
     document.getElementById('mySidenav').style.width = '30%';
