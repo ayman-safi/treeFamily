@@ -18,8 +18,6 @@ function closeNav() {
     chart.render();
 }
 
-
-
 function resetChartState() {
     chart.clearHighlighting();
     const attrs = chart.getChartState();
@@ -89,7 +87,7 @@ function getFilterDirectorJson() {
 }
 
 d3.json(dataUrl).then((dataFlattened) => {
-    savedData = dataFlattened ;
+    savedData = dataFlattened;
     searchData = { ...dataFlattened };
     const ids = Object.values(dataFlattened).map((object) => {
         return object.id;
@@ -129,11 +127,11 @@ d3.json(dataUrl).then((dataFlattened) => {
 });
 
 function openAddNodeModal(parentId) {
-    $('#newNodeName').val('') 
+    $('#newNodeName').val('');
     var myModal = new bootstrap.Modal(document.getElementById('addnodeModal'), {
-        keyboard: false
-    })
-    myModal.show()
+        keyboard: false,
+    });
+    myModal.show();
     maxId = 0;
     const ids = Object.values(savedData).map((object) => {
         return object.id;
@@ -144,10 +142,9 @@ function openAddNodeModal(parentId) {
     $('#parentId').val(parentId);
 }
 
-function addNode(){
+function addNode() {
     var newNodeName = $('#newNodeName').val();
     var parentId = $('#parentId').val();
-
 
     if (!newNodeName || newNodeName === '') {
         alert('ادخل االاسم لاضافة العقدة!');
@@ -156,6 +153,12 @@ function addNode(){
 
     chart.addNode({ id: maxId, name: newNodeName, parentId: parseInt(parentId) });
     chart.render();
+
+    var myModalEl = document.getElementById('addnodeModal');
+    var modal = bootstrap.Modal.getInstance(myModalEl);
+    modal.hide();
+    alert('تم الاضافة بنجاح');
+    markNode(maxId);
 }
 
 function markNode(id) {
@@ -171,10 +174,10 @@ function save() {
         data: JSON.stringify({ people: Object.values(savedData) }),
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-            console.log(data);
+            alert('تم الحفظ بنجاح');
         },
         error: function (errMsg) {
-            console.log(errMsg);
+            alert('خطأ !!!! اخبر ايمن من فضلك عالسريع بس ');
         },
     });
 }
