@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+    <head>
+        <title>Safi Family Tree</title>
+        <meta charset="UTF-8" />
+
+        <link rel="stylesheet" href="assets/css/font-awesome-4.7.0/css/font-awesome.css">
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="bootstrap-5/css/bootstrap.rtl.css" />
+
+        <script type="text/javascript" src="assets/js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="assets/js/d3.v7.min.js"></script>
+        <script type="text/javascript" src="assets/js/d3-org-chart.js"></script>
+        <script type="text/javascript" src="assets/js/d3-flextree.js"></script>
+        <script type="text/javascript" src="bootstrap-5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+        </script>
+    </head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <button class="btn sidebarCollapse">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                </button>
+                <h3>قائمة البحث</h3>
+            </div>
+
+            <div class="list-unstyled components">
+                <input type="text" class="form-control" id="name" placeholder="أدخل الاسم للبحث ..." />
+                <input type="text" class="form-control" id="parent" placeholder="أدخل اسم الأب ..." />
+                <div class="d-grid gap-2">
+                    <button id="go" class="btn btn-primary" onclick="getFilterDirectorJson(event)"><em class="fa fa-search"></em> بحث</button>
+                </div>
+                <div id="filter_data_div"></div>
+            </div>
+        </nav>
+        
+        <div id="content" style="width: 100%;">
+            <div class="top-nav">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary sidebarCollapse">
+                    <span>البحث</span>
+                </button>
+                <button class="btn btn-warning" onclick=save()>حفظ</button>
+                <button class="btn btn-info" onclick=expandAll()>عرض الكل</button>
+                <span  class="site-info">هذه النسخة تجريبية قيد الانشاء والتطوير</span>
+            </div>
+            <div class="chart-container"></div>
+
+        </div>
+        <div class="footer">
+            <span style="font-size: 1rem;">تم تطوير هذا التطبيق بواسطة:</span>
+            <span style="font-size: 1.5rem; font-weight: bold">أيمن سمير صافي</span>
+        </div>
+    </div>  
+
+    <!-- Modal -->
+    <div class="modal fade" id="addnodeModal" tabindex="-1" aria-labelledby="addnodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addnodeModalLabel">اضافة شخص جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" id="newNodeName" placeholder="أدخل الاسم..." />
+                    <input class="form-control" id="parentId"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="addNode()">اضافة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
