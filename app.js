@@ -157,7 +157,6 @@ function addNode() {
     var myModalEl = document.getElementById('addnodeModal');
     var modal = bootstrap.Modal.getInstance(myModalEl);
     modal.hide();
-    alert('تم الاضافة بنجاح');
     markNode(maxId);
 }
 
